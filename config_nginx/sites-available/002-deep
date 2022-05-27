@@ -1,0 +1,63 @@
+server {
+	listen 2274;
+
+	server_name ~^(((?<directory>.*)\.)?(?<subdomain>.*)\.)?(?<domain>[^.]+)\.(?<tld>[^.]+)$;
+	if ($subdomain = "") {
+		set $subdomain "www";
+	}
+	if ($directory = "") {
+		set $directory "web";
+	}
+
+	root    /usr/share/nginx/deep_tree/${subdomain}/${directory};
+
+	index   index.php index.html index.htm;
+
+#	rewrite ^/web/(.*)$ /index.php?path=$1 last;
+
+	charset utf-8;
+	error_page 404 /404.html;
+
+	include php7-4.conf;
+
+	location / {
+#		try_files    $uri $uri/ /index.php?req=$request_uri&$args;
+		try_files    $uri $uri/ /index.php?$args;
+	}
+
+	include security-addons.conf;
+
+	try_files    $uri $uri/ /index.php?$args =404;
+}
+
+server {
+	listen 2281;
+
+	server_name ~^(((?<directory>.*)\.)?(?<subdomain>.*)\.)?(?<domain>[^.]+)\.(?<tld>[^.]+)$;
+	if ($subdomain = "") {
+		set $subdomain "www";
+	}
+	if ($directory = "") {
+			set $directory "web";
+	}
+
+	root    /usr/share/nginx/deep_tree/${subdomain}/${directory};
+
+	index   index.php index.html index.htm;
+
+#	rewrite ^/web/(.*)$ /index.php?path=$1 last;
+
+	charset utf-8;
+	error_page 404 /404.html;
+
+	include php8-1.conf;
+
+	location / {
+#		try_files       $uri $uri/ /index.php?req=$request_uri&$args;
+		try_files       $uri $uri/ /index.php?$args;
+	}
+
+	include security-addons.conf;
+
+	try_files       $uri $uri/ /index.php?$args =404;
+}

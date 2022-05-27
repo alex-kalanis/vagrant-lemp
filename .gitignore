@@ -2,8 +2,13 @@
 .tags1
 .vagrant
 ubuntu-xenial-16.04-cloudimg-console.log
+ubuntu-focal-20.04-cloudimg-console.log
+ubuntu-jammy-22.04-cloudimg-console.log
 _disabled_git_repo
 .editorConfig
-webroot
+deep_tree
+!deep_tree/.gitkeep
+domain_tree
+!domain_tree/.gitkeep
 _disabled*
 _older*

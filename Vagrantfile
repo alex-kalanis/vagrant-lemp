@@ -5,7 +5,9 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/focal64" # "ubuntu/jammy64" does not work - auth error in box
   config.vm.boot_timeout = 600
   config.vm.network "private_network", ip: "10.12.0.202", auto_correct: true
-  config.vm.synced_folder "webroot", "/usr/share/nginx/html", owner: "www-data", group: "www-data"
+  config.vm.synced_folder "simple_tree", "/usr/share/nginx/simple_tree", owner: "www-data", group: "www-data"
+  config.vm.synced_folder "deep_tree", "/usr/share/nginx/deep_tree", owner: "www-data", group: "www-data"
+  config.vm.synced_folder "domain_tree", "/usr/share/nginx/domain_tree", owner: "www-data", group: "www-data"
   config.vm.synced_folder "config_nginx", "/etc/nginx-preset"
   config.vm.synced_folder "config_php", "/etc/php-preset"
   #config.ssh.username = 'vagrant'
@@ -110,7 +112,7 @@ Vagrant.configure("2") do |config|
 
     echo ""
     echo "Installing PHP 7 ..."
-    sudo apt-get -y install php7.4-fpm php7.4-mbstring php7.4-xml php7.4-xmlrpc php7.4-mysql php7.4-pgsql php7.4-sqlite3 php7.4-common php7.4-gd php7.4-cli php7.4-curl php7.4-intl php7.4-imagick php7.4-redis php7.4-zip php7.4-xdebug php7.4-mcrypt php7.4-memcache php7.4-msgpack php7.4-memcached php7.4-yaml php7.4-json >/dev/null 2>&1
+    sudo apt-get -y install php7.4-fpm php7.4-mbstring php7.4-xml php7.4-xmlrpc php7.4-mysql php7.4-pgsql php7.4-sqlite3 php7.4-common php7.4-gd php7.4-cli php7.4-curl php7.4-intl php7.4-imagick php7.4-redis php7.4-zip php7.4-xdebug php7.4-mcrypt php7.4-memcache php7.4-msgpack php7.4-memcached php7.4-yaml php7.4-soap php7.4-json >/dev/null 2>&1
     sudo apt-get -y -f install >/dev/null 2>&1
     sudo systemctl start php7.4-fpm >/dev/null 2>&1
     # sudo systemctl status php7.4-fpm
@@ -122,7 +124,7 @@ Vagrant.configure("2") do |config|
 
     echo ""
     echo "Installing PHP 8 ..."
-    sudo apt-get -y install php8.1-fpm php8.1-mbstring php8.1-xml php8.1-xmlrpc php8.1-mysql php8.1-pgsql php8.1-sqlite3 php8.1-common php8.1-gd php8.1-cli php8.1-curl php8.1-intl php8.1-imagick php8.1-redis php8.1-zip php8.1-xdebug php8.1-mcrypt php8.1-memcache php8.1-msgpack php8.1-memcached php8.1-yaml >/dev/null 2>&1
+    sudo apt-get -y install php8.1-fpm php8.1-mbstring php8.1-xml php8.1-xmlrpc php8.1-mysql php8.1-pgsql php8.1-sqlite3 php8.1-common php8.1-gd php8.1-cli php8.1-curl php8.1-intl php8.1-imagick php8.1-redis php8.1-zip php8.1-xdebug php8.1-mcrypt php8.1-memcache php8.1-msgpack php8.1-memcached php8.1-yaml php8.1-soap >/dev/null 2>&1
     sudo apt-get -y -f install >/dev/null 2>&1
     sudo systemctl start php8.1-fpm >/dev/null 2>&1
     # sudo systemctl status php8.1-fpm
@@ -188,6 +190,10 @@ Vagrant.configure("2") do |config|
     echo "http://lemp.test/phpmyadmin"
     echo "User: phpmyadmin"
     echo "Pass: root"
+    echo ""
+    echo "Hosts:"
+    echo "# vagrant"
+    echo "10.12.0.202	localdomain.local lemp.test"
     echo ""
     echo "======================================="
     echo ""

@@ -32,7 +32,7 @@ that you install the following Vagrant plugin:
 * PHP 7.4
 * PHP 8.1
 * MariaDB
-* PostreSQL
+* PostgreSQL
 * SQLite
 * Redis
 * phpMyAdmin

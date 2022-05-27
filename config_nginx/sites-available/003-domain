@@ -1,5 +1,5 @@
 server {
-	listen 80;
+	listen 2280;
 
 	server_name ~^(((?<directory>.*)\.)?(?<subdomain>.*)\.)?(?<domain>[^.]+)\.(?<tld>[^.]+)$;
 	if ($subdomain = "") {
@@ -9,7 +9,7 @@ server {
 		set $directory "web";
 	}
 
-	root    /usr/share/nginx/html/${subdomain}/${directory};
+	root    /usr/share/nginx/domain_tree/${domain}.${tld}/${subdomain}/${directory};
 
 	index   index.php index.html index.htm;
 
@@ -31,17 +31,17 @@ server {
 }
 
 server {
-	listen 81;
+	listen 2281;
 
 	server_name ~^(((?<directory>.*)\.)?(?<subdomain>.*)\.)?(?<domain>[^.]+)\.(?<tld>[^.]+)$;
 	if ($subdomain = "") {
 		set $subdomain "www";
 	}
 	if ($directory = "") {
-			set $directory "web";
+		set $directory "web";
 	}
 
-	root    /usr/share/nginx/html/${subdomain}/${directory};
+	root    /usr/share/nginx/domain_tree/${domain}.${tld}/${subdomain}/${directory};
 
 	index   index.php index.html index.htm;
 
