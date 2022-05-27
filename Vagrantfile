@@ -18,12 +18,12 @@ Vagrant.configure("2") do |config|
     v.customize ["modifyvm", :id, "--cpus", 1]
   end
 
-  #if defined?(VagrantPlugins::HostsUpdater)
-  #  config.vm.hostname = "lemp.test"
-  #  config.hostsupdater.aliases = [
-  #    "www.lemp.test"
-  #  ]
-  #end
+  if defined?(VagrantPlugins::HostsUpdater)
+    config.vm.hostname = "lemp.test"
+    config.hostsupdater.aliases = [
+      "www.lemp.test"
+    ]
+  end
 
   config.vm.provision "shell", inline:<<-SHELL
     echo ""
