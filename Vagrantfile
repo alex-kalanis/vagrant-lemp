@@ -174,7 +174,10 @@ Vagrant.configure("2") do |config|
     sudo ln -sf /usr/share/phpmyadmin /usr/share/nginx/html/phpmyadmin >/dev/null 2>&1
     echo "GRANT ALL PRIVILEGES ON *.* TO 'phpmyadmin'@'localhost' WITH GRANT OPTION;" | mysql -uroot -proot
     echo "FLUSH PRIVILEGES;" | mysql -uroot -proot
+    echo "CREATE DATABASE testing;" | mysql -uroot -proot
     sudo systemctl reload mysql >/dev/null 2>&1
+    sudo -u postgres psql -c "CREATE USER phpmyadmin WITH ENCRYPTED PASSWORD 'root';" >/dev/null 2>&1
+    sudo -u postgres psql -c "CREATE DATABASE testing;" >/dev/null 2>&1
     echo "... done installing phpMyAdmin."
 
     echo ""
@@ -186,8 +189,7 @@ Vagrant.configure("2") do |config|
     echo ""
     echo "Nginx - MariaDB - PostgreSQL - SQLite - Redis - PHP7 - PHP8"
     echo ""
-    echo "phpMyAdmin"
-    echo "http://lemp.test/phpmyadmin"
+    echo "mariadb / postgres"
     echo "User: phpmyadmin"
     echo "Pass: root"
     echo ""

@@ -68,7 +68,7 @@ To login to the server using Sequel Pro or Workbench just use
 
 as SSH details
 
-For the MySQL details use 
+For the MySQL details use  
 * host: 127.0.0.1 
 * user: phpmyadmin and 
 * password: root
@@ -77,13 +77,20 @@ NB Sequel Pro users: Use the SSH tab
 
 ---
 
+## Caveats
+
+It's necessary to have default access visible in Vagrantfile. So for
+production you shall clone the whole repository, remove these passwords
+locally and only then use it in production! I have no responsibility
+if you do not do that!
+
 ## License
 
 The MIT License (MIT)
 
-Copyright (c) 2016 Mike Sprague
-Copyright (c) 2017 Petr Bolehovsky
-Copyright (c) 2022 Petr Plsek
+Copyright (c) 2016 Mike Sprague  
+Copyright (c) 2017 Petr Bolehovsky  
+Copyright (c) 2022 Petr Plsek  
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
