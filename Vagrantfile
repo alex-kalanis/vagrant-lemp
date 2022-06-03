@@ -144,6 +144,7 @@ Vagrant.configure("2") do |config|
     sudo systemctl restart php7.4-fpm >/dev/null 2>&1
     sudo systemctl restart php8.1-fpm >/dev/null 2>&1
     sudo systemctl restart nginx >/dev/null 2>&1
+    sudo usermod -a -G www-data vagrant
     echo "... Configuration set."
 
     # echo ""
@@ -195,7 +196,7 @@ Vagrant.configure("2") do |config|
     echo ""
     echo "Hosts:"
     echo "# vagrant"
-    echo "10.12.0.202	localdomain.local lemp.test"
+    echo "10.12.0.202    localdomain.local lemp.test"
     echo ""
     echo "======================================="
     echo ""
